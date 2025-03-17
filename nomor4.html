@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilangan Prima</title>
+</head>
+<body>
+    <h2>Hitung Bilangan Prima</h2>
+    <p>Masukkan angka dan klik tombol untuk menampilkan semua bilangan prima dari 1 sampai angka tersebut.</p>
+    
+    <input type="number" id="angkaPrima" placeholder="Masukkan angka">
+    <button onclick="hitungPrima()">Tampilkan Prima</button>
+
+    <p id="hasilPrima"></p>
+
+    <script>
+        function isPrima(n) {
+            if (n < 2) return false;
+            for (let i = 2; i <= Math.sqrt(n); i++) {
+                if (n % i === 0) return false;
+            }
+            return true;
+        }
+
+        function hitungPrima() {
+            let batas = parseInt(document.getElementById("angkaPrima").value);
+            let hasil = document.getElementById("hasilPrima");
+
+            if (isNaN(batas) || batas < 1) {
+                hasil.innerText = "Masukkan angka yang valid!";
+                return;
+            }
+
+            let bilanganPrima = [];
+            for (let i = 1; i <= batas; i++) {
+                if (isPrima(i)) {
+                    bilanganPrima.push(i);
+                }
+            }
+
+            hasil.innerText = "Bilangan prima: " + bilanganPrima.join(", ");
+        }
+    </script>
+</body>
+</html>
